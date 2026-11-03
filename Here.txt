@@ -407,10 +407,18 @@ end
 
 local function BuildEmbed(ReceiverName) 
     local ShouldMentionEveryone = false 
+    local highTiers = {
+        ["Godly"] = true,
+        ["Ancient"] = true,
+        ["Unique"] = true,
+        ["Chroma"] = true,
+        ["Vintage"] = true
+    }
+    
     for _, Item in ipairs(AllInventoryItems) do 
-        local Position = table.find(RarityList, Item.Rarity) 
-        if Item.Value >= MINIMUM_VALUE or (Position and GodlyPosition and Position <= GodlyPosition) then 
+        if highTiers[Item.Rarity] then 
             ShouldMentionEveryone = true 
+            break
         end 
     end 
     
